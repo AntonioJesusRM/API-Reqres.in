@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import axios from 'axios'
+import './style/Login.css'
 
 const Login = ({ onLoginSuccess }) => {
 	const [email, setEmail] = useState('')
@@ -8,11 +9,11 @@ const Login = ({ onLoginSuccess }) => {
 
 	const handleEmailChange = (e) => {
 		setEmail(e.target.value)
-	};
+	}
 
 	const handlePasswordChange = (e) => {
 		setPassword(e.target.value)
-	};
+	}
 
 	const handleSubmit = (e) => {
 		e.preventDefault()
@@ -25,35 +26,37 @@ const Login = ({ onLoginSuccess }) => {
 			.catch((error) => {
 				setEmail('')
 				setPassword('')
-				setError('Nombre de usuario o contraseña incorrectos')
+				setError('Credenciales incorrectas')
 			})
 	}
 
 	return (
-	<div id='login' className='Form-login'>
-		<h2>Iniciar Sesión</h2>
-		<form onSubmit={handleSubmit}>
-		<div>
-			<label>Email:</label>
-			<input
-			type="text"
-			value={email}
-			onChange={handleEmailChange}
-			/>
+		<div className='Login'>
+			<div id='login' className='Form-body'>
+				<h2 className='Text'>Iniciar Sesión</h2>
+				<form className='Login-form' onSubmit={handleSubmit}>
+					<div>
+						<input
+						type="text"
+						placeholder='Email'
+						value={email}
+						onChange={handleEmailChange}
+						/>
+					</div>
+					<div>
+						<input
+						type="password"
+						placeholder='Contraseña'
+						value={password}
+						onChange={handlePasswordChange}
+						/>
+					</div>
+					<button type="submit">Iniciar Sesión</button>
+					{error && <p className="Error-msg">{error}</p>}
+				</form>
+			</div>
 		</div>
-		<div>
-			<label>Contraseña:</label>
-			<input
-			type="password"
-			value={password}
-			onChange={handlePasswordChange}
-			/>
-		</div>
-		<button type="submit">Iniciar Sesión</button>
-		{error && <p className="Error-msg">{error}</p>}
-		</form>
-	</div>
-	);
-};
+	)
+}
 
-export default Login;
+export default Login

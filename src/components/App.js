@@ -6,14 +6,14 @@ import './style/App.css'
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 	const token = localStorage.getItem('token')
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [isAuthenticated, setIsAuthenticated] = useState(false)
 
 	useEffect(() => {
-		const token = localStorage.getItem('token');
+		const token = localStorage.getItem('token')
 		if (token) {
-			setIsAuthenticated(true);
+			setIsAuthenticated(true)
 		}
-	}, []);
+	}, [])
 	
 	const handleLoginSuccess = (token) => {
 		localStorage.setItem('token', token)
@@ -22,13 +22,13 @@ const App = () => {
 
 	const handleLogout = () => {
 		localStorage.removeItem('token')
-		setIsAuthenticated(false);
-		window.location.reload();
+		setIsAuthenticated(false)
+		window.location.reload()
 	}
 
 	return (
 	<div className="App">
-		<header className="App-header">
+		<header>
 			{(isLoggedIn || isAuthenticated) ? (
           		<UserList LogOut={handleLogout}/>
         	) : (
@@ -36,7 +36,7 @@ const App = () => {
 			)}
 		</header>
 	</div>
-	);
+	)
 }
 
-export default App;
+export default App
